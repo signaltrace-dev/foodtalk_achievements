@@ -1,0 +1,371 @@
+<?php
+
+drupal_add_css(drupal_get_path('module', 'foodtalk_achievements') . '/css/custom.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+
+define('FOODTALK_NODE_LESSON_INTRO', 138);
+define('FOODTALK_NODE_LESSON_1', 139); //139
+define('FOODTALK_NODE_LESSON_2', 140); //140
+define('FOODTALK_NODE_LESSON_3', 141); //141
+define('FOODTALK_NODE_LESSON_4', 142); //142
+define('FOODTALK_NODE_LESSON_5', 143); //143
+define('FOODTALK_NODE_LESSON_6', 144); //144
+
+
+function foodtalk_achievements_achievements_info() {
+  $achievements = array(
+    'registered' => array(
+      'title'       => t('Member'),
+      'description' => t("You're a member! Welcome, friend."),
+      'images'      => array(
+        'unlocked' => '/sites/default/files/badges/Member.png'
+        ),
+      'points'      => 100,
+    ),
+    'enrolled' => array(
+      'title'       => t('Eligible'),
+      'description' => t("Good to go! Let's get started."),
+      'images'      => array(
+        'unlocked' => '/sites/default/files/badges/LetsGetStarted.png'
+        ),
+      'points'      => 100,
+    ),
+    'intro-complete' => array(
+        'title'         => t('Intro Complete'),
+        'description'   => t("You've completed your first lesson. That was easy!"),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/Intro.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-1-complete'   => array(
+        'title'         => t('Lesson 1 Complete'),
+        'description'   => t('Lesson one, done. Hooray!'),
+              'images'      => array(
+        'unlocked' => '/sites/default/files/badges/Lesson1.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-2-complete'  => array(
+        'title'         => t('Lesson 2 Complete'),
+        'description'   => t("Two down - keep going!"),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/Health.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-3-complete-form'  => array(
+        'title'         => t('Lesson 3 Complete'),
+        'description'   => t("You're halfway there - keep it up!"),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/Shopping.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-3-complete'  => array(
+        'title'         => t('Halfway There'),
+        'description'   => t("Congratulations on completing half of Food eTalk’s lessons."),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/halfway.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-4-complete'  => array(
+        'title'         => t('Lesson 4 Complete'),
+        'description'   => t("Started from the Intro now you’re here - don’t stop now!"),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/Diet.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-5-complete'  => array(
+        'title'         => t('Lesson 5 Complete'),
+        'description'   => t("Almost done!"),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/budget.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-6-complete'  => array(
+        'title'         => t('Lesson 6 Complete'),
+        'description'   => t("Congratulations on completing every Food eTalk lesson."),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/completeaward.png'
+        ),
+        'points'        => 100,
+    ),
+    'lesson-6-certificate'  => array(
+        'title'         => t('Certification Complete'),
+        'description'   => t("You did it!"),
+        'images'      => array(
+        'unlocked' => '/sites/default/files/badges/Complete.png'
+        ),
+        'points'        => 100,
+    ),
+    'intro-view'  => array(
+        'title'         => t('Intro Viewed'),
+        'description'   => t(""),
+        'points'        => 0,
+        'secret'        => TRUE,
+        'invisible'     => TRUE,
+        'hide-notification' => TRUE,
+    ),
+    'lesson-1-view'  => array(
+        'title'         => t('Lesson 1 Viewed'),
+        'description'   => t(""),
+        'points'        => 0,
+        'secret'        => TRUE,
+        'invisible'     => TRUE,
+        'hide-notification' => TRUE,
+    ),
+    'lesson-2-view'  => array(
+        'title'         => t('Lesson 2 Viewed'),
+        'description'   => t(""),
+        'points'        => 0,
+        'secret'        => TRUE,
+        'invisible'     => TRUE,
+        'hide-notification' => TRUE,
+    ),
+    'lesson-3-view'  => array(
+        'title'         => t('Lesson 3 Viewed'),
+        'description'   => t(""),
+        'points'        => 0,
+        'secret'        => TRUE,
+        'invisible'     => TRUE,
+        'hide-notification' => TRUE,
+    ),
+    'lesson-4-view'  => array(
+        'title'         => t('Lesson 4 Viewed'),
+        'description'   => t(""),
+        'points'        => 0,
+        'secret'        => TRUE,
+        'invisible'     => TRUE,
+        'hide-notification' => TRUE,
+    ),
+    'lesson-5-view'  => array(
+        'title'         => t('Lesson 5 Viewed'),
+        'description'   => t(""),
+        'points'        => 0,
+        'secret'        => TRUE,
+        'invisible'     => TRUE,
+        'hide-notification' => TRUE,
+    ),
+    'lesson-6-view'  => array(
+        'title'         => t('Lesson 6 Viewed'),
+        'description'   => t(""),
+        'points'        => 0,
+        'secret'        => TRUE,
+        'invisible'     => TRUE,
+        'hide-notification' => TRUE,
+    ),
+  );
+
+  return $achievements;
+}
+
+function foodtalk_achievements_theme(){
+  $path = drupal_get_path('module', 'foodtalk_achievements') . '/templates';
+
+  return array(
+    'achievement-notification' => array(
+      'variables'   => array('achievement' => NULL, 'unlock' => NULL),
+      'template'    => 'achievement-notification',
+      'path'        => $path
+    ),
+  );
+}
+
+function foodtalk_achievements_user_login(&$edit, $account){
+    achievements_unlocked('registered');
+
+}
+
+function foodtalk_achievements_node_view($node, $view_mode, $langcode){
+  switch($node->nid){
+    case '96':
+      achievements_unlocked('intro-complete');
+      break;
+    case '154':
+      achievements_unlocked('lesson-1-complete');
+      break;
+    case '1':
+      achievements_unlocked('lesson-5-complete');
+      break;
+    case '1':
+      achievements_unlocked('lesson-6-complete');
+      break;
+
+    case FOODTALK_NODE_LESSON_INTRO:
+      achievements_unlocked('intro-view');
+      break;
+    case FOODTALK_NODE_LESSON_1:
+      achievements_unlocked('lesson-1-view');
+      break;
+    case FOODTALK_NODE_LESSON_2:
+      achievements_unlocked('lesson-2-view');
+      break;
+    case FOODTALK_NODE_LESSON_3:
+      achievements_unlocked('lesson-3-view');
+      break;
+    case FOODTALK_NODE_LESSON_4:
+      achievements_unlocked('lesson-4-view');
+      break;
+    case FOODTALK_NODE_LESSON_5:
+      achievements_unlocked('lesson-5-view');
+      break;
+    case FOODTALK_NODE_LESSON_6:
+      achievements_unlocked('lesson-6-view');
+      break;
+  }
+
+  if($node->type == 'sco_node'){
+    if(!empty($node->field_mobile_version['und'][0])){
+      if(module_exists('mobile_detect')){
+        $detect = mobile_detect_get_object();
+        $is_mobile = $detect->isMobile();
+        $is_tablet = $detect->isTablet();
+
+	if($is_mobile && !empty($node->field_mobile_version['und'][0]['display_url'])){
+
+	    drupal_goto($node->field_mobile_version['und'][0]['display_url']);
+        }
+
+      }
+    }
+  }
+
+
+}
+
+function foodtalk_achievements_lock_all(){
+  achievements_locked('registered');
+  achievements_locked('enrolled');
+  achievements_locked('intro-complete');
+  achievements_locked('lesson-1-complete');
+  achievements_locked('lesson-2-complete');
+  achievements_locked('lesson-3-complete');
+  achievements_locked('lesson-4-complete');
+  achievements_locked('lesson-5-complete');
+  achievements_locked('lesson-6-complete');
+}
+
+function foodtalk_achievements_unlock_form_achievement($form_id){
+  switch($form_id){
+    case 'webform-client-form-47':
+      achievements_unlocked('enrolled');
+      break;
+    case 'webform-client-form-58':
+      achievements_unlocked('lesson-2-complete');
+      break;
+    case 'webform-client-form-59':
+      achievements_unlocked('lesson-3-complete');
+      achievements_unlocked('lesson-3-complete-form');
+      break;
+    case 'webform-client-form-60':
+      achievements_unlocked('lesson-4-complete');
+      break;
+    case 'webform-client-form-61':
+      achievements_unlocked('lesson-5-complete');
+      break;
+    case 'webform-client-form-55':
+      achievements_unlocked('lesson-6-complete');
+      achievements_unlocked('lesson-6-certificate');
+      break;
+  }
+}
+
+
+function foodtalk_achievements_achievements_unlocked($achievement, $uid) {
+
+  // post to twitter or facebook, unlock an additional reward, etc., etc.
+}
+
+function foodtalk_achievements_block_info(){
+  $blocks = array();
+  $blocks['user_badges'] = array(
+    'info' => t('User Achievement Badges'),
+  );
+
+  return $blocks;
+}
+
+function foodtalk_achievements_block_view($delta=''){
+  $block = array();
+
+  switch ($delta) {
+    case 'user_badges':
+      $block['content'] = fa_block_view();
+      break;
+
+    default:
+      break;
+  }
+
+  return $block;
+}
+
+function fa_block_view(){
+  $block = array();
+  global $user;
+
+  $uid = $user->uid;
+
+  $unlocks = achievements_unlocked_already(NULL, $uid);
+  $achievers = achievements_totals_user(0, $uid);
+
+  $achiever = array_pop($achievers);
+  $achievements_grouped = achievements_load(NULL, TRUE);
+
+  $output = '';
+
+  if(user_is_logged_in()){
+
+    foreach ($achievements_grouped as $group_id => $group) {
+      $counter = 0;
+
+      foreach ($group['achievements'] as $achievement_id => $achievement) {
+        if (empty($achievement['invisible'])) {
+          if (isset($unlocks[$achievement_id])) {
+            $imageUrl = '';
+            if(isset($achievement['images']['unlocked'])){
+              $imageUrl = "<img src='" . $achievement['images']['unlocked'] . "'/>";
+            }
+
+            $clear = "";
+            if($counter != 0 && $counter % 3 == 0){
+              $clear = "clear";
+            }
+
+            $cert_class = '';
+          	if($achievement_id == 'lesson-6-certificate'){
+          		$cert_class = ' cert-complete';
+          		$output .= "<a href='/node/55/submissions'>";
+          	}
+
+            $output .= "<div class='fa-user-badge badge-" . $achievement_id . " ". $clear . $cert_class . "'>" . $imageUrl . "<span class='badge-title'>" . $achievement['title'] . "</span></div>" ;
+          	if($achievement_id == 'lesson-6-certificate'){
+          		$output .= "</a>";
+          	}
+            $counter++;
+          }
+        }
+
+      }
+    }
+  }
+  else{
+    $output = "<div class='fa-badges anon'>" . t('Log-in to unlock achievements as you make your healthy journey with Food eTalk.') . "</div>";
+  }
+
+
+
+
+  $block = array(
+      'message' => array(
+        '#type' => 'markup',
+        '#markup' => $output,
+        '#suffix' => '',
+      ),
+  );
+
+  return $block;
+}

@@ -1,0 +1,5 @@
+name = FoodTalk Achievements
+description = Adds custom achievements.
+package = Foodtalk
+version = 7.x-1.0
+core = 7.x

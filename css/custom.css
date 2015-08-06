@@ -1,0 +1,61 @@
+.fa-user-badge{
+	overflow: hidden;
+	width: 30%;
+	text-align: center;
+	padding: 10px 0;
+	float:left;
+	margin:10px 1%;
+}
+
+.fa-user-badge .badge-title {
+	font-weight: bold;
+	font-size: 11px;
+	display: block;
+	text-align: center;
+}
+
+.fa-user-badge img{
+	max-width: 75px;
+}
+
+.achievement-notification img{
+	width:100px;
+}
+
+.achievement-notification.achievement-unlocked{
+	height:auto !important;
+	overflow: hidden;
+	padding:0;
+}
+
+.achievement-notification .achievement-image{
+	margin:0 !important;
+}
+
+.achievement-notification .achievement-body{
+	margin:0 !important;
+}
+
+.achievement-group .achievement-image img, .achievement .achievement-image img {
+  width: 50px;
+}
+
+.clear{
+	clear:both;
+}
+
+.fa-badges{
+	margin:10px auto;
+}
+
+.fa-badges.anon{
+	padding:20px;
+}
+.achievement-lesson-1-view,
+.achievement-lesson-2-view,
+.achievement-lesson-3-view,
+.achievement-lesson-4-view,
+.achievement-lesson-5-view,
+.achievement-lesson-6-view{
+	display:none;
+}

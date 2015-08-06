@@ -1,0 +1,41 @@
+.fa-user-badge{
+	overflow: hidden;
+	width: 25%;
+	text-align: center;
+	border:1px solid #dadada;
+	padding: 10px 0;
+	border-radius: 6px;
+}
+
+.fa-user-badge .badge-title {
+	font-weight: bold;
+	font-size: 18px;
+	display: block;
+	text-align: center;
+}
+
+.fa-user-badge img{
+	max-width: 100px;
+}
+
+.achievement-notification img{
+	width:100px;
+}
+
+.achievement-notification.achievement-unlocked{
+	height:auto !important;
+	overflow: hidden;
+	padding:0;
+}
+
+.achievement-notification .achievement-image{
+	margin:0 !important;
+}
+
+.achievement-notification .achievement-body{
+	margin:0 !important;
+}
+
+.achievement-group .achievement-image img, .achievement .achievement-image img {
+  width: 50px;
+}
